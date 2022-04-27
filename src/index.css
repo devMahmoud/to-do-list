@@ -1,3 +1,56 @@
-body {
-    background-color: bisque;
+.todo-placeholder {
+  width: 80%;
+  padding: 0 1rem;
+  margin: auto;
+  box-shadow: 4px 4px 2px #dadada;
+}
+
+.list-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #dadada;
+}
+
+.add-todo-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 0;
+  border-bottom: 1px solid #dadada;
+}
+
+.add-todo {
+  border: none;
+}
+
+.todo {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #dadada;
+}
+
+.todo-check-desc {
+  display: flex;
+  align-items: center;
+}
+
+.todo-desc {
+  margin-left: 1rem;
+}
+
+.clear-container {
+  display: flex;
+  justify-content: center;
+  padding: 1rem;
+  background: #f6f6f6;
+}
+
+.clear {
+  text-decoration: none;
+  color: rgb(58, 56, 56);
 }
