@@ -6,9 +6,9 @@ In this project, I'm creating an interactive and minimal To-do list, that's goin
 
 ## Built With
 
-- Major languages
+- Major languages: 
     HTML, CSS, Javascript
-- Frameworks
+- Frameworks: 
     webpack
 
 ## Getting Started
@@ -29,7 +29,7 @@ In this project, I'm creating an interactive and minimal To-do list, that's goin
 👤 **Mahmoud Makhlouf**
 
 - GitHub: [@devMahmoud](https://github.com/devMahmoud)
-- LinkedIn: [@Mahmoud Makhlouf](https://www.linkedin.com/in/mahmoud-makhlouf-844271211/)
+- LinkedIn: [Mahmoud Makhlouf](https://www.linkedin.com/in/mahmoud-makhlouf-844271211/)
 
 ## 🤝 Contributing
 Contributions, issues, and feature requests are welcome!
