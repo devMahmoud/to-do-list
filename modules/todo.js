@@ -14,6 +14,10 @@ class Todo {
     todosArr.splice(index, 1);
     localStorage.setItem('todos', JSON.stringify(todosArr));
   }
+
+  update = (arr) => {
+    localStorage.setItem('todos', JSON.stringify(arr));
+  }
 }
 
 export default Todo;

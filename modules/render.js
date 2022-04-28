@@ -3,8 +3,11 @@ import Todo from './todo.js';
 const todosList = document.querySelector('.todos-list');
 const todoInput = document.querySelector('.add-todo');
 const addBtn = document.querySelector('.add');
-const clearBtn = document.querySelector('.clear');
 let todosArr = [];
+
+const updateStatus = (index, bool) => {
+  todosArr[index].completed = bool;
+};
 
 const render = () => {
   todosList.innerHTML = null;
@@ -13,12 +16,17 @@ const render = () => {
     todosArr = JSON.parse(localStorage.getItem('todos'));
   }
 
-  const removeTodo = (index) => {
-    todo.remove(index, todosArr);
+  const removeTodo = (arrIndex) => {
+    for (let i = arrIndex + 1; i < todosArr.length; i += 1) {
+      todosArr[i].index -= 1;
+    }
+    todo.remove(arrIndex, todosArr);
   };
 
-  const updateStatus = (index, bool) => {
-    todosArr[index].completed = bool;
+  const editDescription = (index, ele) => {
+    todosArr[index].description = ele.value;
+    todo.update(todosArr);
+    render();
   };
 
   for (let i = 0; i < todosArr.length; i += 1) {
@@ -30,19 +38,28 @@ const render = () => {
     const todoCheck = document.createElement('input');
     todoCheck.type = 'checkbox';
     todoCheck.className = 'todo-check';
-    const todoDesc = document.createElement('p');
-    todoDesc.textContent = todosArr[i].description;
+    const todoDesc = document.createElement('input');
+    todoDesc.value = todosArr[i].description;
     todoDesc.className = 'todo-desc';
+    todoDesc.readOnly = true;
     checkAndDesc.append(todoCheck, todoDesc);
 
     const todoOptions = document.createElement('i');
     todoOptions.classList.add('fa-solid', 'fa-ellipsis-vertical', 'todo-options');
 
     todoDiv.append(checkAndDesc, todoOptions);
-
     todosList.append(todoDiv);
 
+    todoDesc.addEventListener('keyup', (event) => {
+      if (event.key === 'Enter') {
+        editDescription(i, todoDesc);
+      }
+    });
+
     todoOptions.addEventListener('click', () => {
+      todoDiv.style.background = '#dfdeac';
+      todoDesc.readOnly = false;
+      todoDesc.focus();
       if (todoOptions.classList.contains('fa-trash-can')) {
         todoDiv.remove();
         removeTodo(i);
@@ -78,7 +95,7 @@ addBtn.addEventListener('click', () => {
 });
 
 todoInput.addEventListener('keyup', (event) => {
-  if (event.keyCode === 13) {
+  if (event.key === 'Enter') {
     addTodo();
   }
 });
