@@ -5,6 +5,10 @@
   box-shadow: 4px 4px 2px #dadada;
 }
 
+i {
+  padding: 0 0.5rem;
+}
+
 .list-header {
   display: flex;
   flex-direction: row;
@@ -18,12 +22,13 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  padding: 1rem 0;
   border-bottom: 1px solid #dadada;
 }
 
 .add-todo {
   border: none;
+  width: 80%;
+  padding: 1rem 0;
 }
 
 .todo {
