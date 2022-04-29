@@ -1,12 +1,20 @@
 import Todo from './todo.js';
+import updateStatus from './todo-status.js';
 
 const todosList = document.querySelector('.todos-list');
 const todoInput = document.querySelector('.add-todo');
 const addBtn = document.querySelector('.add');
+const clearCompletedBtn = document.querySelector('.clear');
 let todosArr = [];
 
-const updateStatus = (index, bool) => {
-  todosArr[index].completed = bool;
+const updateIndex = (index) => {
+  for (let i = index + 1; i < todosArr.length; i += 1) {
+    todosArr[i].index -= 1;
+  }
+};
+
+const updateCheckBox = (index, bool) => {
+  updateStatus(index, bool, todosArr);
 };
 
 const render = () => {
@@ -17,9 +25,7 @@ const render = () => {
   }
 
   const removeTodo = (arrIndex) => {
-    for (let i = arrIndex + 1; i < todosArr.length; i += 1) {
-      todosArr[i].index -= 1;
-    }
+    updateIndex(arrIndex);
     todo.remove(arrIndex, todosArr);
   };
 
@@ -50,6 +56,11 @@ const render = () => {
     todoDiv.append(checkAndDesc, todoOptions);
     todosList.append(todoDiv);
 
+    if (todosArr[i].completed) {
+      todoDesc.style.textDecoration = 'line-through';
+      todoCheck.checked = true;
+    }
+
     todoDesc.addEventListener('keyup', (event) => {
       if (event.key === 'Enter') {
         editDescription(i, todoDesc);
@@ -70,15 +81,25 @@ const render = () => {
 
     todoCheck.addEventListener('change', () => {
       if (todoCheck.checked) {
-        console.log('Checkbox is checked..', i);
-        updateStatus(i, true);
+        updateCheckBox(i, true);
+        todoDesc.style.textDecoration = 'line-through';
       } else {
-        console.log('Checkbox is not checked..');
-        updateStatus(i, false);
+        updateCheckBox(i, false);
       }
     });
   }
 };
+
+clearCompletedBtn.addEventListener('click', () => {
+  const todo = new Todo();
+  for (let i = 0; i < todosArr.length; i += 1) {
+    if (todosArr[i].completed) {
+      updateIndex(i);
+      todo.remove(i, todosArr);
+    }
+  }
+  render();
+});
 
 const addTodo = () => {
   if (todoInput.value) {
