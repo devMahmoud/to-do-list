@@ -4,6 +4,9 @@
 
 In this project, I'm creating an interactive and minimal To-do list, that's going to let the final user add, remove, edit and keep track of their daily tasks.
 
+# Live Demo
+[Live Demo Link](https://devmahmoud.github.io/to-do-list/dist/)
+
 ## Built With
 
 - Major languages: 
