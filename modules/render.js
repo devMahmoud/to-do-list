@@ -121,4 +121,4 @@ todoInput.addEventListener('keyup', (event) => {
   }
 });
 
-export default render;
+export {render, clearCompletedBtn} ;
